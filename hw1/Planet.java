@@ -2,8 +2,8 @@ public class Planet{
   public static double G = 6.67e-11;
   public static double dt;
 
-  private double xNetForce;
-  private double yNetForce;
+  public double xNetForce;
+  public double yNetForce;
   public double xAccel;
   public double yAccel;
 
@@ -37,14 +37,16 @@ public class Planet{
   }
 
   public double calcPairwiseForceX(Planet a){
-    return calcPairwiseForce(a)/calcDistance(a)*Math.abs(this.x - a.x);
+    return calcPairwiseForce(a)/calcDistance(a)*(a.x-this.x);
   }
 
   public double calcPairwiseForceY(Planet a){
-    return calcPairwiseForce(a)/calcDistance(a)*Math.abs(this.y - a.y);
+    return calcPairwiseForce(a)/calcDistance(a)*(a.y-this.y);
   }
 
   public void setNetForce(Planet[] a){
+      this.xNetForce = 0;
+      this.yNetForce = 0;
       for (Planet planet : a){
           if (this != planet){
               this.xNetForce = this.xNetForce + calcPairwiseForceX(planet);
@@ -59,6 +61,8 @@ public class Planet{
 
   public void update(double dt){
     // assume that netforce is set already
+      xAccel = xNetForce/mass;
+      yAccel = yNetForce/mass;
       xVelocity = xVelocity + dt*xAccel;
       yVelocity = yVelocity + dt*yAccel;
       x = x + dt*xVelocity;

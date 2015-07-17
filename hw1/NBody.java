@@ -10,7 +10,7 @@ public class NBody{
         double R = file.readDouble();
 
         // read planets into an array
-        Planet[] planets = new Planet[5];
+        Planet[] planets = new Planet[N];
         for(int i=0; i<N; i++){
           planets[i] = getPlanet(file);
         }
@@ -19,8 +19,8 @@ public class NBody{
         // set the scale of the universe
         StdDraw.setScale(-R,R);
         StdDraw.picture(0,0,"/images/starfield.jpg");
-        double[] sound = StdAudio.read("/audio/2001.mid");
-        StdAudio.play(sound);
+        // double[] sound = StdAudio.read("/audio/2001.mid");
+        // StdAudio.play(sound);
 
         // draw the planets
         for (Planet planet: planets){
@@ -32,6 +32,9 @@ public class NBody{
         while (time < T) {
           for (Planet planet: planets){
             planet.setNetForce(planets);
+          }
+
+          for (Planet planet: planets){
             planet.update(dt);
           }
 
