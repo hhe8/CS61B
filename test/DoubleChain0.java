@@ -1,55 +1,31 @@
 
 public class DoubleChain {
 
-	public DNode head;
-	private DNode sentinel;
-	private int size;
+	private DNode head;
+	private DNode backSentinel;
 
 	public DoubleChain(double val) {
 		/* your code here. */
 
 		// head is never null here so is backSentinel.next
-		DNode initial = new DNode(null,val,null);
-		sentinel = new DNode(initial, 123 ,initial);
-		initial.next = sentinel;
-		initial.prev = sentinel;
-		head = sentinel;
-		size = 1;
-	}
-
-	public DoubleChain() {
-		/* your code here. */
-
-		// head is never null here so is backSentinel.next
-		sentinel = new DNode(null, 123 , null);
-		sentinel.next = sentinel;
-		sentinel.prev = sentinel;
-		head = sentinel;
-		size = 0;
+		head = new DNode(null,val,null);
+		backSentinel = new DNode(null, 0 ,head);
 	}
 
 	public DNode getFront() {
-		if (size > 0){
-			return head.next;
-		}
-		return null;
+		return head;
 	}
 
 	/** Returns the last item in the DoubleChain. */
 	public DNode getBack() {
 		/* your code here */
-		if (size > 0){
-			return head.prev;
-		}
-		return null;
+		return backSentinel.next;
 	}
 
 	/** Adds D to the front of the DoubleChain. */
 	public void insertFront(double d) {
 		/* your code here */
-		head.next = new DNode(head, d , head.next);
-		head.next.next.prev = head.next;
-		size += 1;
+		head = new DNode(null, d , head);
 	}
 
 	/** Adds D to the back of the DoubleChain. */
@@ -57,43 +33,41 @@ public class DoubleChain {
 		/* your code here */
 		// Make sure that backSentinel.next is not null for this to work.
 		//backSentinel.next is head initially;
-		head.prev.next = new DNode(head.prev, d, head);
-		head.prev = head.prev.next;
-		size += 1;
+		backSentinel.next.next = new DNode(backSentinel.next, d , null);
+		backSentinel.next = backSentinel.next.next;
 	}
 
 	/** Removes the last item in the DoubleChain and returns it.
 	  * This is an extra challenge problem. */
 	public DNode deleteBack() {
-		/* your code here */
-		if (size > 0){
-			DNode result = head.prev;
-			head.prev = head.prev.prev;
-			head.prev.next = head;
-			size -= 1;
-			return result;
+		if (backSentinel.next.prev == null) {
+				System.out.println("cant delete the last item in the list");
+				return null;
 		}
-		return null;
+		/* your code here */
+		DNode temp = backSentinel.next;
+		//make sure backSentinel.next.prev is not null;
+		backSentinel.next = backSentinel.next.prev;
+		backSentinel.next.next = null;
+		return temp;
 	}
 
 	/** Returns a string representation of the DoubleChain.
 	  * This is an extra challenge problem. */
 	public String toString() {
 		/* your code here */
-		int i = size;
-		if (i == 0){
-			return "";
-		}
-		DNode ptr = head.next;
+		DNode ptr = head;
 		String result = "<["+Double.toString(ptr.val);
-		i -= 1;
-		while (i > 0){
+		while (ptr.next!=null){
 			ptr = ptr.next;
 			result += ", "+Double.toString(ptr.val);
-			i = i - 1;
 		}
 		result += "]>";
 		return result;
+	}
+
+	public void delete(int i){
+		
 	}
 
 	public static class DNode {
@@ -113,16 +87,10 @@ public class DoubleChain {
 	}
 
 	public static void main(String[] args) {
-			DoubleChain sample = new DoubleChain();
-      sample.insertFront(2);
+			DoubleChain sample = new DoubleChain(1);
+      sample.insertBack(2);
       sample.insertBack(3);
-			sample.deleteBack();
-			sample.deleteBack();
-			sample.deleteBack();
 			System.out.println(sample.toString());
-
-			// DoubleChain sample2 = new DoubleChain(1);
-			// System.out.println(sample2.head.next.next.val);
 	}
 
 }

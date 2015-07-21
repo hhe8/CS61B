@@ -31,6 +31,15 @@ public class TestDoubleChain {
         assertEquals(8, d.getBack().val, 1e-11);
     }
 
+    @Test
+    public void testToString(){
+      DoubleChain head = new DoubleChain(1);
+      head.insertBack(2);
+      head.insertBack(3);
+      String result = head.toString();
+      assertEquals("<[1.0, 2.0, 3.0]>",result);
+    }
+
     public static void main(String[] args) {
         jh61b.junit.textui.runClasses(TestDoubleChain.class);
     }
