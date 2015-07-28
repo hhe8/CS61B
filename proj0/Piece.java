@@ -1,12 +1,12 @@
 public class Piece{
-  public boolean isFIre;
+  public boolean isFire;
   public Board b;
   public int x;
   public int y;
   public String type; // "pawn", "bomb", and "shield"
 
-  public boolean isKing = False;
-  public boolean hasCaptured = False;
+  public boolean isKing = false;
+  public boolean hasCaptured = false;
 
   public Piece(boolean isFire, Board b, int x, int y, String type){
     this.isFire = isFire;
@@ -16,15 +16,15 @@ public class Piece{
     this.type = type;
   }
 
-  public void isFire(){
+  public boolean isFire(){
     return isFire;
   }
 
-  public int side(){
+  public String side(){
     if (isFire){
-      return 0;
+      return "fire";
     }
-    return 1;
+    return "water";
   }
 
   public boolean isKing(){
@@ -44,7 +44,14 @@ public class Piece{
   }
 
   public void move(int x, int y){
-
+    // if (Math.abs(this.x - x) == 2){
+    //   Board.remove(this.x+(x-this.x)/2,this.y+(y-this.y)/2);
+    //   Board.hasCaptured = true;
+    // }
+    Board.pieces[x][y] = Board.remove(this.x,this.y);
+    this.x = x;
+    this.y = y;
+    Board.moved = true;
   }
 
   public boolean hasCaptured(){
@@ -52,7 +59,7 @@ public class Piece{
   }
 
   public void doneCapturing(){
-    hasCaptured = False;
+    hasCaptured = false;
   }
 
 }
