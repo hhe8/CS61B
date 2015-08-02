@@ -13,16 +13,31 @@ public class ApplicableIntList{
     /** A list with head HEAD0 and tail TAIL0. */
     public ApplicableIntList(int head0, ApplicableIntList tail0) {
         // REPLACE THIS LINE WITH YOUR SOLUTION
+        head = head0;
+        tail = tail0;
     }
 
     /** A list with null tail, and head = 0. */
     public ApplicableIntList() {
         // REPLACE THIS LINE WITH YOUR SOLUTION
+        head = 0;
+        tail = null;
     }
 
     /** Inserts int i into its correct location, doesn't handle cycles. */
     public void insert(int i) {
         // REPLACE THIS LINE WITH YOUR SOLUTION
+        if (i < head){
+          tail = new ApplicableIntList(head,tail);
+          head = i;
+        } else {
+          ApplicableIntList ptr = this;
+          while(i > ptr.head && ptr.tail != null){
+            ptr = ptr.tail;
+            i -= 1;
+          }
+          ptr.tail = new ApplicableIntList(i,ptr.tail);
+        }
     }
 
     /** Returns the i-th int in this list.
@@ -30,11 +45,32 @@ public class ApplicableIntList{
      *  Assume i takes on the values [0, length of list - 1]. */
     public int get(int i) {
         // REPLACE THIS LINE WITH YOUR SOLUTION
+        ApplicableIntList ptr = this;
+        while (i > 0){
+            ptr = ptr.tail;
+            i-=1;
+        }
+        return ptr.head;
     }
 
     /** Applies the function f to every item in this list. */
     public void apply(IntUnaryFunction f) {
         // REPLACE THIS LINE WITH YOUR SOLUTION
+        ApplicableIntList ptr = this;
+        while (ptr != null){
+          ptr.head = f.apply(ptr.head);
+          ptr = ptr.tail;
+        }
+
+        // reordering the list;
+        ApplicableIntList newList = new ApplicableIntList(get(0),null);
+        ptr = this.tail;
+        while(ptr != null){
+          newList.insert(ptr.head);
+          ptr = ptr.tail;
+        }
+        head = newList.head;
+        tail = newList.tail;
     }
 
     /** Returns NULL if no cycle exists, else returns cycle location. */

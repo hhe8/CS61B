@@ -6,14 +6,14 @@ public class Board{
 
   public static Piece selectedPiece;
   public static boolean moved;
-  public static boolean hasCaptured;
+  public static Piece hasCaptured;
 
   public Board(boolean shouldBeEmpty){
     if (shouldBeEmpty){
     }
     selectedPiece = null;
     moved = false;
-    hasCaptured = false;
+    hasCaptured = null;
 
     StdDrawPlus.setXscale(0, N);
     StdDrawPlus.setYscale(0, N);
@@ -83,16 +83,15 @@ public class Board{
 
   public static boolean validMove(Piece selectedPiece, int x, int y){
     if (pieceAt(x,y)==null && !outOfBound(x,y)) {
-      if ((Math.abs(selectedPiece.x - x) < 1 && Math.abs(selectedPiece.y - y) < 1) ){
+      if ((Math.abs(selectedPiece.x - x) == 1 && Math.abs(selectedPiece.y - y) == 1) ){
         return true;
       }
-      if (((Math.abs(selectedPiece.x - x) == 2) && (Math.abs(selectedPiece.y -y) == 2)) && pieceAt(selectedPiece.x + (x - selectedPiece.x)/2, selectedPiece.y + (y - selectedPiece.y)/2)!=null ){
-        if (selectedPiece.isFire() != pieces[x][y].isFire()) {return true;}
-      }
-    }
 
-    if (pieceAt(x,y)!=null){
-      return false;
+      hasCaptured = pieces[selectedPiece.x + (x - selectedPiece.x)/2][selectedPiece.y + (y - selectedPiece.y)/2];
+
+      if (((Math.abs(selectedPiece.x - x) == 2) && (Math.abs(selectedPiece.y -y) == 2)) && hasCaptured!=null ){
+        if (selectedPiece.isFire() != hasCaptured.isFire()) {return true;}
+      }
     }
     return false;
   }
@@ -101,6 +100,7 @@ public class Board{
     if (pieceAt(x,y)!=null){
       System.out.println("selecting new");
       selectedPiece = pieces[x][y];
+      return;
     }
     if (selectedPiece != null && pieceAt(x,y)==null){
       System.out.println("moving piece");
@@ -127,7 +127,7 @@ public class Board{
   }
   //
   public static boolean canEndTurn(){
-    if (moved == true || hasCaptured == true){
+    if (moved == true || hasCaptured != null){
       return true;
     }
     return false;
@@ -136,7 +136,7 @@ public class Board{
   public static void endTurn(){
     selectedPiece = null;
     moved = false;
-    hasCaptured = false;
+    hasCaptured = null;
     switchTurn();
   }
   //
@@ -163,24 +163,6 @@ public class Board{
       }
   }
 
-  // public static void main(String[] args) {
-  //     int N = 8;
-  //     StdDrawPlus.setXscale(0, N);
-  //     StdDrawPlus.setYscale(0, N);
-  //     pieces = new boolean[N][N];
-  //
-  //     /** Monitors for mouse presses. Wherever the mouse is pressed,
-  //         a new piece appears. */
-  //     while(true) {
-  //         drawBoard(N);
-  //         if (StdDrawPlus.mousePressed()) {
-  //             double x = StdDrawPlus.mouseX();
-  //             double y = StdDrawPlus.mouseY();
-  //             pieces[(int) x][(int) y] = true;
-  //         }
-  //         StdDrawPlus.show(100);
-  //     }
-  // }
 
   public static void main(String[] args) {
     Board b = new Board(false);
@@ -190,15 +172,14 @@ public class Board{
       while(!canEndTurn()){
         if (StdDrawPlus.mousePressed()) {
             System.out.println(" ");
-            System.out.println("pressed");
+            System.out.println("pressed"+Board.N);
             double x = StdDrawPlus.mouseX();
             double y = StdDrawPlus.mouseY();
             System.out.println((int) x+","+ (int) y);
 
-            if (true || canSelect((int) x,(int) y)){
+            if (canSelect((int) x,(int) y)){
               select((int) x, (int) y);
-              //System.out.println("selected" + selectedPiece.x + ',' + selectedPiece.y);
-
+              System.out.println("selected" + (int) x + ',' + (int) y);
             }
         }
         StdDrawPlus.show(100);

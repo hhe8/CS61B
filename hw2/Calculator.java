@@ -155,4 +155,7 @@ public class Calculator {
         }
         return result;
     }
+
+    // for expression with parenthesis
+    // use the dijkstra's twos tack algorithm.
 }

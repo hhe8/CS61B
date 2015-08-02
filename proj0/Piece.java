@@ -44,10 +44,9 @@ public class Piece{
   }
 
   public void move(int x, int y){
-    // if (Math.abs(this.x - x) == 2){
-    //   Board.remove(this.x+(x-this.x)/2,this.y+(y-this.y)/2);
-    //   Board.hasCaptured = true;
-    // }
+    if (Board.hasCaptured!=null){
+      Board.remove(Board.hasCaptured.x , Board.hasCaptured.y);
+    }
     Board.pieces[x][y] = Board.remove(this.x,this.y);
     this.x = x;
     this.y = y;

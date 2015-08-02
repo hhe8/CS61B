@@ -1,19 +1,19 @@
 Q1.
-(a) 
-(b) 
-(c) 
-(d) 
-(e) 
-(f) 
+(a) SuperAnimal
+(b) No
+(c) I'm an animal   Nope. it should be RingDing
+(d) Yes
+(e) None
+(f) dynamic
 
 Q2.
-(a) 
-(b) 
-(c) 
-(d) 
+(a) compile-time error
+(b) Ringding
+(c) Ringding
+(d) dynamic
 
 Q3.
-(a) 
-(b) 
-(c) 
-(d) 
+(a) False
+(b) SuperFox  Wrong. SuperAnimal
+(c) SuperFox  Wrong. SuperAnimal
+(d) dynamic   Wrong. static
