@@ -1,4 +1,5 @@
 import java.util.Comparator;
+import java.util.Arrays;
 /* Import anything else you need here. */
 
 /**
@@ -21,7 +22,7 @@ public class MaxPlanet {
         //   }
         // }
         // return ans;
-        Array.sort(planets,c);
+        Arrays.sort(planets,c);
         return planets[planets.length-1];
     }
 }
