@@ -1,8 +1,8 @@
 import java.util.Set;
-/* Your implementation ULLMap should implement this interace. To do so, 
+/* Your implementation ULLMap should implement this interace. To do so,
  * append "implements Map61B<K,V>" to the end of your "public class..."
  * declaration, though you can use other formal type parameters if you'd like.
- */ 
+ */
 public interface Map61B<K, V> {
     /** Removes all of the mappings from this map. */
     public void clear();
@@ -11,7 +11,7 @@ public interface Map61B<K, V> {
     public boolean containsKey(K key);
 
     /* Returns the value to which the specified key is mapped, or null if this
-     * map contains no mapping for the key. 
+     * map contains no mapping for the key.
      */
     public V get(K key);
 
@@ -30,5 +30,5 @@ public interface Map61B<K, V> {
     public V remove(K key, V value);
 
     /* Returns a Set view of the keys contained in this map. Not required for HW5. */
-    public Set<K> keySet();    
+    public Set<K> keySet();
 }

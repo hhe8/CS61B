@@ -9,7 +9,7 @@ import huglife.Occupant;
 import huglife.Impassible;
 import huglife.Empty;
 
-/** Tests the plip class   
+/** Tests the plip class
  *  @authr FIXME
  */
 
@@ -31,11 +31,6 @@ public class TestPlip {
     }
 
     @Test
-    public void testReplicate() {
-
-    }
-
-    //@Test
     public void testChoose() {
         Plip p = new Plip(1.2);
         HashMap<Direction, Occupant> surrounded = new HashMap<Direction, Occupant>();
@@ -46,7 +41,7 @@ public class TestPlip {
 
         //You can create new empties with new Empty();
         //Despite what the spec says, you cannot test for Cloruses nearby yet.
-        //Sorry!  
+        //Sorry!
 
         Action actual = p.chooseAction(surrounded);
         Action expected = new Action(Action.ActionType.STAY);
@@ -54,7 +49,16 @@ public class TestPlip {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testReplicate(){
+      Plip p = new Plip();
+      Plip pReplicate = p.replicate();
+      assertEquals(0.5,pReplicate.energy(),0.001);
+      assertEquals(0.5,p.energy(),0.001);
+      assertNotSame(p,pReplicate);
+    }
+
     public static void main(String[] args) {
         System.exit(jh61b.junit.textui.runClasses(TestPlip.class));
     }
-} 
+}
