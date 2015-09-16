@@ -28,12 +28,12 @@ public class YearlyRecordWeird {
         /* Will not pass muster for that 0.1 bonus points. */
         countMap.put(word, count);
         needsUpdating = true;
-
+        return;
     }
 
     /** Returns the number of words with fewer Zs than x, where x is some
       * key in the map. If x is not part of the map, return -1. */
-    public int fewerZs(String x) {        
+    public int fewerZs(String x) {
         if (!countMap.containsKey(x)) {
             return -1;
         }
@@ -76,7 +76,7 @@ public class YearlyRecordWeird {
         /* This is specific to this weird problem I've made up, not the
          * project. */
         int lastZCount = 0;
-        fewerZsCount.put(words[0], 0);        
+        fewerZsCount.put(words[0], 0);
         for (int i = 1; i < words.length; i += 1) {
             int currentZCount = zCount(words[i]);
             int numWordsLessZs;
@@ -86,7 +86,7 @@ public class YearlyRecordWeird {
             } else {
                 numWordsLessZs = fewerZsCount.get(words[i-1]);
             }
-            
+
             fewerZsCount.put(words[i], numWordsLessZs);
             lastZCount = currentZCount;
         }
@@ -114,4 +114,4 @@ public class YearlyRecordWeird {
         System.out.println(yr.fewerZs("zzzzzzzz")); // should be -1: not in map
         System.out.println(yr.fewerZs("zebras")); // should be 1: peel
     }
-} 
+}
