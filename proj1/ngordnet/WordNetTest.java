@@ -6,7 +6,7 @@ public class WordNetTest {
 
     @Test
     public void testConstructor() {
-      WordNet demo = new WordNet("./wordnet/synsets11.txt", "./wordnet/hyponyms11.txt");
+      WordNet demo = new WordNet("../wordnet/synsets11.txt", "../wordnet/hyponyms11.txt");
     }
 
     public static void main(String[] args) {
