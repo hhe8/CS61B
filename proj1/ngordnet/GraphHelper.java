@@ -1,12 +1,11 @@
-package ngordnet;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.DirectedDFS;
 import java.util.TreeSet;
 import java.util.Set;
 
-/** Provides a method for finding all descendants of a set of vertices in a 
+/** Provides a method for finding all descendants of a set of vertices in a
  *  Digraph. See GraphDemo.java for an example of how this class is used.
- *  
+ *
  *  DO NOT MODIFY THIS FILE.
  *  @author Josh Hug
  */
@@ -24,4 +23,4 @@ public class GraphHelper {
         }
         return reachable;
     }
-} 
+}
