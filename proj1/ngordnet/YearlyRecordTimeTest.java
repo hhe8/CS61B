@@ -31,14 +31,14 @@ public class YearlyRecordTimeTest {
 
         for (int i = 0; i < N; i += 1) {
             String rs = randomString();
-            /* Each random string has a random count of between 0 and 49. 
+            /* Each random string has a random count of between 0 and 49.
              * May include multiple strings with same count. */
             yr.put(rs, StdRandom.uniform(50));
-        }        
+        }
     }
 
 
-    /* Tests to see if you can insert 100000 strings in less than a second. 
+    /* Tests to see if you can insert 100000 strings in less than a second.
      * Pass this on submit/proj1 for 0.1 bonus points. */
     @Test(timeout = 1000)
     public void testPut100000() {
@@ -78,7 +78,7 @@ public class YearlyRecordTimeTest {
         return rankCount;
     }
 
-    /** Tests to see if your rank() function is independent of YearlyRecord size. 
+    /** Tests to see if your rank() function is independent of YearlyRecord size.
       * Must pass for full credit. */
     @Test(timeout = 10000)
     public void testRankCalls() {
@@ -88,7 +88,7 @@ public class YearlyRecordTimeTest {
 
         numWordsToPut = 100;
         int numRankCallsLargerYR = countRankCalls(numWordsToPut, maxTimeInSeconds);
-    
+
         double ratio = ((double) numRankCallsTinyYR / (double) numRankCallsLargerYR);
         assertTrue("Expected ratio of number of rank calls to be no more than 2. "
                    + "Actual ratio was: " + ratio, ratio < 2);
@@ -104,7 +104,7 @@ public class YearlyRecordTimeTest {
 
         System.out.println(" * TestPut100000: Can your code insert 100000 items into a");
         System.out.println("   yearly record in less than 1 second? Pass on submit/proj1");
-        System.out.println("   for 0.1 bonus points.\n");        
+        System.out.println("   for 0.1 bonus points.\n");
 
         System.out.println(" * TestPut1000: Can your code insert 1000 items into a");
         System.out.println("   yearly record in less than 1 second? No bonus credit, but");
@@ -113,6 +113,4 @@ public class YearlyRecordTimeTest {
 
         jh61b.junit.textui.runClasses(YearlyRecordTimeTest.class);
     }
-}   
-
-
+}
