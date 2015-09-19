@@ -1,4 +1,5 @@
 import java.util.*;
+package ngordnet;
 public class YearlyRecord {
 
     // primary map to store the word -> count;

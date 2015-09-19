@@ -103,7 +103,7 @@ public class NGramMap {
       return new TimeSeries<Double>(summedWeightHistory(words),startYear,endYear);
 
     }
-    
+
     /** Returns the summed relative frequency of all WORDS. */
     public TimeSeries<Double> summedWeightHistory(Collection<String> words){
       TimeSeries<Double> result;

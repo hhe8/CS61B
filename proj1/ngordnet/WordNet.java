@@ -1,6 +1,7 @@
 import edu.princeton.cs.introcs.In;
 import edu.princeton.cs.algs4.Digraph;
 import java.util.*;
+package ngordnet;
 
 public class WordNet {
     /** Creates a WordNet using files form SYNSETFILENAME and HYPONYMFILENAME */
