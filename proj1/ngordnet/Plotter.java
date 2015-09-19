@@ -1,3 +1,4 @@
+package ngordnet;
 import java.util.*;
 import com.xeiam.xchart.*;
 public class Plotter {

@@ -1,3 +1,4 @@
+package ngordnet;
 import java.util.*;
 public class SortMap<K,V>{
   public static <K, V extends Comparable<? super V>> Map<K, V>sortByValue( Map<K, V> map ){

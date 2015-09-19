@@ -1,5 +1,6 @@
+package ngordnet;
 import java.util.*;
-
+import edu.princeton.cs.introcs.In;
 public class NGramMap {
     /** Constructs an NGramMap from WORDSFILENAME and COUNTSFILENAME. */
     public Map<String,TimeSeries<Integer>> wordTimeSeries;

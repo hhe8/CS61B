@@ -1,8 +1,7 @@
-/** Demo of using the XChart class. Will compile 
- *  and run straight out of the box. 
+/** Demo of using the XChart class. Will compile
+ *  and run straight out of the box.
  *  @author Josh Hug
  */
-
 import java.util.ArrayList;
 import com.xeiam.xchart.Chart;
 import com.xeiam.xchart.QuickChart;
@@ -20,17 +19,17 @@ public class XChartDemo {
         for (int i = 1; i < 30; i += 1) {
             xValues.add(i);
             yValues.add(i*i);
-        }        
-    
+        }
+
         // Create Chart
         String title = "x^2 vs. x";
         String ylabel = "y";
         String xlabel = "x";
         String legend = "x^2";
         Chart chart = QuickChart.getChart(title, ylabel, xlabel, legend, xValues, yValues);
-     
+
         // Show it
-        new SwingWrapper(chart).displayChart();        
+        new SwingWrapper(chart).displayChart();
     }
 
     /** Creates a plot of x^2 vs. x on a loglog plot. */
@@ -41,7 +40,7 @@ public class XChartDemo {
         for (int i = 1; i < 30; i += 1) {
             xValues.add(i);
             yValues.add(i*i);
-        }        
+        }
 
         // Create Chart
         String title = "x^2 vs. x";
@@ -67,7 +66,7 @@ public class XChartDemo {
             xValues.add(i);
             yValues1.add(i*i);
             yValues2.add(i*i*i / 20);
-        } 
+        }
 
         // Create Chart
         String title = "x^2 vs. x";
@@ -89,4 +88,4 @@ public class XChartDemo {
         loglogPlot();
         plotTwo();
     }
-} 
+}

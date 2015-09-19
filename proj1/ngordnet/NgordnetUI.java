@@ -1,6 +1,6 @@
 /* Starter code for NgordnetUI (part 7 of the project). Rename this file and
    remove this comment. */
-
+package ngordnet;
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.In;
 
@@ -9,7 +9,7 @@ import edu.princeton.cs.introcs.In;
  */
 public class NgordnetUI {
     public static void main(String[] args) {
-        In in = new In("../ngordnet/ngordnetui.config");
+        In in = new In("./ngordnet/ngordnetui.config");
         System.out.println("Reading ngordnetui.config...");
 
         String wordFile = in.readString();

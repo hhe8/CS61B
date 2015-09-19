@@ -1,5 +1,5 @@
-import java.util.*;
 package ngordnet;
+import java.util.*;
 public class YearlyRecord {
 
     // primary map to store the word -> count;
