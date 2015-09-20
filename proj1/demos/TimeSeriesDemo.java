@@ -9,7 +9,7 @@ import java.util.Collection;
 
 public class TimeSeriesDemo {
     public static void main(String[] args) {
-        //Create a new time series that maps to Double 
+        //Create a new time series that maps to Double
         TimeSeries<Double> ts = new TimeSeries<Double>();
 
         /* You will not need to implement the put method, since your
@@ -20,7 +20,7 @@ public class TimeSeriesDemo {
         ts.put(1995, 16.1);
         ts.put(1996, -15.7);
 
-        /* Gets the years and data of this TimeSeries. 
+        /* Gets the years and data of this TimeSeries.
          * Note, you should never cast these to another type, even
          * if you happen to know how the Collection<Number> is implemented. */
         Collection<Number> years = ts.years();
@@ -30,7 +30,7 @@ public class TimeSeriesDemo {
             /* This awkward conversion is necessary since you cannot
              * do yearNumber.get(yearNumber), since get expects as
              * Integer since TimeSeries always require an integer
-             * key. 
+             * key.
              *
              * Your output may be in any order. */
             int year = yearNumber.intValue();
@@ -43,7 +43,7 @@ public class TimeSeriesDemo {
               * they did in the previous for loop. */
             double datum = dataNumber.doubleValue();
             System.out.println("In some year, the value was " + datum);
-        }        
+        }
 
         TimeSeries<Integer> ts2 = new TimeSeries<Integer>();
         ts2.put(1991, 10);
@@ -65,20 +65,20 @@ public class TimeSeriesDemo {
 
         /* The following would cause an IllegalArgumentException since ts2
          * does not include all years from ts, which is tantamount to a
-         * divide by zero error. 
-        
+         * divide by zero error.
+
         TimeSeries<Double> quotient = ts.dividedBy(ts2);
-        
+
         */
 
 
-        /* The following code would fail at compile time, because a 
+        /* The following code would fail at compile time, because a
          * TimeSeries's formal type parameter is defined as having
          * a type upper bound of Number, and String is-not-a Number.
-        
+
         TimeSeries<String> tsS = new TimeSeries<String>();
 
         */
 
     }
-} 
+}
