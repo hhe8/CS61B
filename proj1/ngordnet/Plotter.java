@@ -25,9 +25,9 @@ public class Plotter {
 
     // /** Creates a plot of the processed history from STARTYEAR to ENDYEAR, using
     //   * NGM as a data source, and the YRP as a yearly record processor. */
-    // public static void plotProcessedHistory(NGramMap ngm, int startYear, int endYear, YearlyRecordProcessor yrp){
-    //
-    // }
+    public static void plotProcessedHistory(NGramMap ngm, int startYear, int endYear, YearlyRecordProcessor yrp){
+      plotTS(ngm.processedHistory(startYear,endYear,yrp),"Processed History (average word length by character)", "X", "Y" , "average word length");
+    }
 
     /** Creates a plot of the total normalized count of WN.hyponyms(CATEGORYLABEL)
       * from STARTYEAR to ENDYEAR using NGM and WN as data sources. */
@@ -74,5 +74,20 @@ public class Plotter {
     //
     // /** Plots the count (or weight) of every word against the rank of every word on a
     //   * log-log plot. Uses data from YEAR, using NGM as a data source. */
-    // public static void plotZipfsLaw(NGramMap ngm, int year)
+    public static void plotZipfsLaw(NGramMap ngm, int year){
+      Chart chart = new Chart(600,500);
+      chart.setChartTitle("Zipfs Law: log-log plot of rank vs count in year " + year);
+      chart.setXAxisTitle("X (log rank)");
+      chart.setYAxisTitle("Y (log count)");
+      YearlyRecord yr = ngm.getRecord(year);
+      Collection<Number> ydata = yr.counts();
+      Collection<Number> xdata = new ArrayList<Number>();
+      for (int i = ydata.size(); i > 0; i--){
+        xdata.add(i);
+      }
+      chart.addSeries(year+"",xdata,ydata);
+      chart.getStyleManager().setXAxisLogarithmic(true);
+      chart.getStyleManager().setYAxisLogarithmic(true);
+      new SwingWrapper(chart).displayChart();
+    }
 }

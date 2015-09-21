@@ -8,17 +8,17 @@ public class YearlyRecord {
     Map<String,Integer> rankMap;
     Map<String,Integer> sortedMap;
 
-    Set<String> sortedWords;
-    Set<Number> sortedCounts;
+    Collection<String> sortedWords;
+    Collection<Number> sortedCounts;
 
     /** Creates a new empty YearlyRecord. */
     public YearlyRecord(){
       countMap = new HashMap<String, Integer>();
-      sortedMap = new HashMap<String,Integer>();
-      rankMap = new HashMap<String,Integer>();
+      sortedMap = new LinkedHashMap<String,Integer>();
+      rankMap = new LinkedHashMap<String,Integer>();
       cached = false;
-      sortedWords = new TreeSet<String>();
-      sortedCounts = new TreeSet<Number>();
+      sortedWords = new ArrayList<String>();
+      sortedCounts = new ArrayList<Number>();
     }
 
     /** Creates a YearlyRecord using the given data. */
@@ -48,7 +48,7 @@ public class YearlyRecord {
       if (cached == false){
         this.rankBuild();
       }
-      return sortedWords;
+      return new ArrayList<String>(sortedWords);
     }
 
     /** Returns all counts in ascending order of count. */
@@ -56,7 +56,7 @@ public class YearlyRecord {
       if (cached == false){
         this.rankBuild();
       }
-      return sortedCounts;
+      return new ArrayList<Number>(sortedCounts);
     }
 
     /** Returns rank of WORD. Most common word is rank 1.
@@ -76,10 +76,8 @@ public class YearlyRecord {
       }
 
       // build the sortedWords and sortedCounts Set.
-      sortedWords = rankMap.keySet();
-      for (String word : sortedWords){
-        sortedCounts.add(sortedMap.get(word));
-      }
+      sortedWords = new ArrayList<String>(sortedMap.keySet());
+      sortedCounts = new ArrayList<Number>(sortedMap.values());
       cached = true;
     }
 

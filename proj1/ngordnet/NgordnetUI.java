@@ -16,11 +16,12 @@ public class NgordnetUI {
         String countFile = in.readString();
         String synsetFile = in.readString();
         String hyponymFile = in.readString();
-        System.out.println("\nBased on ngordnetui.config, using the following: "
-                           + wordFile + ", " + countFile + ", " + synsetFile +
-                           ", and " + hyponymFile + ".");
+        System.out.println("\nBased on ngordnetui.config, using the following: \n"
+                           + wordFile + "\n" + countFile + "\n" + synsetFile +
+                           "\n" + hyponymFile + ".");
         WordNet wn = new WordNet(synsetFile,hyponymFile);
         NGramMap ngm = new NGramMap(wordFile,countFile);
+        YearlyRecordProcessor yrp = new WordLengthProcessor();
 
         int minDate = ngm.totalCountHistory().firstKey();
         int maxDate = ngm.totalCountHistory().lastKey();
@@ -63,6 +64,13 @@ public class NgordnetUI {
                       break;
                   case "hypohist":
                       Plotter.plotCategoryWeights(ngm,wn,tokens,startDate,endDate);
+                      break;
+                  case "wordlength":
+                      Plotter.plotProcessedHistory(ngm,startDate,endDate,yrp);
+                      break;
+                  case "zipf":
+                      int zipfYear = Integer.parseInt(tokens[0]);
+                      Plotter.plotZipfsLaw(ngm,zipfYear);
                       break;
                   default:
                       System.out.println("Invalid command.");

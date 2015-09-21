@@ -1,8 +1,10 @@
 /** Provides examples of using the YearlyRecord class.
  *  @author Josh Hug
  */
+package demos;
 import java.util.Collection;
 import java.util.HashMap;
+import ngordnet.*;
 
 public class YearlyRecordDemo {
     public static void main(String[] args) {
@@ -15,6 +17,8 @@ public class YearlyRecordDemo {
         System.out.println(yr.rank("quayside")); // should print 3
         System.out.println(yr.size()); // should print 3
 
+        System.out.println(yr.counts());
+        System.out.println(yr.words());
         Collection<String> words = yr.words();
 
         /* The code below should print:
@@ -46,5 +50,6 @@ public class YearlyRecordDemo {
         rawData.put("puppetry", 191);
         YearlyRecord yr2 = new YearlyRecord(rawData);
         System.out.println(yr2.rank("auscultating")); // should print 4
+        System.out.println(yr2.rank("berry"));
     }
 }
